@@ -5,6 +5,21 @@
 
 using namespace std;
 
+double numero(string mensaje){
+    double n;
+    while(true){
+        cout << mensaje;
+        cin >> n;
+        if(cin.fail()){
+            cout << "No es un numero, intenta otra vez. \n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }else{
+            return n;
+        }
+    }
+}
+
 int main(){
 
     char op;
@@ -15,8 +30,19 @@ int main(){
     cout << "##### Calculadora Basica #####\n";
 
     while(true){ 
-        cout << "Ingresa Operacion [+, -, *, /, ^, r, c, h] o 's' si quieres salir ) \n";
+        cout << "Ingresa Operacion \n";
+        cout << "[+] Suma   [-] Resta   [*]Multiplicacion \n";
+        cout << "[/] Division   [^] Potencia   [r] Raiz Cuadrada \n";
+        cout << "[c] Raiz cubica   [h] Ver Historial   [S] Salir \n";
         cin >> op;
+
+        bool OperacionValida = (op == '+' || op == '-' || op == '*' || op == '/' || op == '^' || op == 'r' || op == 'c');
+        bool Menu = (op == 'h' || op == 's' || op == 'H' || op == 'S');
+
+        if(!OperacionValida && !Menu){
+            cout << "Error: Ingresa solamente operadores validos\n";
+            continue;
+        }
         
         if(op == 'h' || op == 'H'){
             cout << "###Historial###" << endl;
@@ -27,8 +53,8 @@ int main(){
         }
 
         if(op == 'r' || op == 'R' || op == 'c' || op == 'C'){
-            cout << "Ingresa el numero ";
-            cin >> num1;
+            num1 = numero("Ingresa el numero: ");
+
         if(num1 < 0){
             cout << "No se le puede sacar raiz a un numero negativo: \n";
         }else{
@@ -50,16 +76,8 @@ int main(){
             cout << "Saliste del programa. \n";
             break;
    }
-        if (op != '+' && op != '-' && op != '*' && op != '/' && op != '^') {
-            cout << "Error: Ingresa solamente operadores validos\n";
-            continue;
-        }
-
-        cout << "Ingresa el numero 1: \n";
-        cin >> num1;
-
-        cout << "Ingresa el numero 2: \n";
-        cin >> num2;
+        num1 = numero("Ingresa el Numero 1: \n");
+        num2 = numero("Ingresa el Numero 2: \n");
 
    switch(op){
     case '+':
