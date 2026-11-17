@@ -34,9 +34,10 @@ int main(){
         cout << "[+] Suma   [-] Resta   [*]Multiplicacion \n";
         cout << "[/] Division   [^] Potencia   [r] Raiz Cuadrada \n";
         cout << "[c] Raiz cubica   [h] Ver Historial   [S] Salir \n";
+        cout << "[p] Porcentaje \n";
         cin >> op;
 
-        bool OperacionValida = (op == '+' || op == '-' || op == '*' || op == '/' || op == '^' || op == 'r' || op == 'c');
+        bool OperacionValida = (op == '+' || op == '-' || op == '*' || op == '/' || op == '^' || op == 'r' || op == 'R' || op == 'c' || op == 'C' || op == 'p' || op == 'P');
         bool Menu = (op == 'h' || op == 's' || op == 'H' || op == 'S');
 
         if(!OperacionValida && !Menu){
@@ -52,7 +53,7 @@ int main(){
             continue;
         }
 
-        if(op == 'r' || op == 'R' || op == 'c' || op == 'C'){
+        if(op == 'r' || op == 'R' || op == 'c' || op == 'C' ){
             num1 = numero("Ingresa el numero: ");
 
         if(num1 < 0){
@@ -109,7 +110,13 @@ int main(){
         cout << "Resultado: " << resultado << endl;
         historial.push_back(to_string(num1) + " ^ " + to_string(num2) + " = " + to_string(resultado));
         break;
-    }
+    case 'p':
+    case 'P':
+            resultado = (num1 * num2) / 100.0;
+            cout << "resultado: " << resultado << endl;
+            historial.push_back(to_string(num1) + " % de " + to_string(num2) + " = " + to_string(resultado));
+            break;
+        }
 }
     return 0;
 }
